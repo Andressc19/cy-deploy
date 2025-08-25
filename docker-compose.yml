@@ -1,14 +1,13 @@
 services:
      mysql:
-          image: mysql:8.0
-          container_name: cydb
+          image: postgres:17
+          container_name: cy-solicitudes
           environment:
-               MYSQL_DATABASE: ${MYSQL_DATABASE}
-               MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-               MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-               MYSQL_USER: ${MYSQL_USER}
+               POSTGRES_DB: ${POSTGRES_DB}
+               POSTGRES_USER: ${POSTGRES_USER}
+               POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
           ports:
-               - "3308:3306"
+               - "5433:5432"
           volumes:
-               - ./mysql_data:/var/lib/mysql
+               - ./postgres_data:/var/lib/postgresql/data
                - ./init.sql:/docker-entrypoint-initdb.d/init.sql 

@@ -1,11 +1,11 @@
 # cy-deploy
 
-Command to up:
+Command to up container:
 ```bash
-    docker compose up --build -d
+docker compose up --build -d
 ```
 
 Command to down container:
 ```bash
-    docker compose down -v ; rm -r postgrest_data
+docker compose down -v ; rm -r postgrest_data
 ```

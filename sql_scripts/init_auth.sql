@@ -5,7 +5,7 @@
 -- ============================================================
 
 -- 1. Tabla USUARIO_ROL
-CREATE TABLE IF NOT EXISTS usuario_rol (
+CREATE TABLE IF NOT EXISTS rol_usuario (
     id_rol SERIAL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     descripcion VARCHAR(255) NOT NULL
@@ -24,5 +24,11 @@ CREATE TABLE IF NOT EXISTS usuario (
     salario_base NUMERIC(10, 2) NOT NULL,
     id_rol INT NOT NULL,
 
-    CONSTRAINT fk_usuario_rol FOREIGN KEY (id_rol) REFERENCES usuario_rol(id_rol)
+    CONSTRAINT fk_rol_usuario FOREIGN KEY (id_rol) REFERENCES rol_usuario(id_rol)
 );
+
+-- Insertar roles base
+INSERT INTO rol_usuario (nombre, descripcion) VALUES
+('CLIENTE', 'Usuario que realiza solicitudes o consume servicios'),
+('ASESOR', 'Usuario encargado de atender solicitudes de clientes'),
+('ADMINISTRADOR', 'Administrador del sistema con privilegios completos');

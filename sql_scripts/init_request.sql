@@ -4,15 +4,16 @@
 --   Version       : 1.0
 -- ============================================================
 
--- 1. Tabla ESTADOS
-CREATE TABLE IF NOT EXISTS estados (
+
+-- 1. Tabla ESTADO_PRESTAMO
+CREATE TABLE IF NOT EXISTS estado_prestamo (
     id_estado SERIAL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     descripcion VARCHAR(255) NOT NULL
 );
 
--- 2. Tabla TIPOS_PRESTAMOS
-CREATE TABLE IF NOT EXISTS tipos_prestamos (
+-- 2. Tabla TIPO_PRESTAMO
+CREATE TABLE IF NOT EXISTS tipo_prestamo (
     id_tipo_prestamo SERIAL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     monto_minimo NUMERIC(10,2) NOT NULL,
@@ -21,8 +22,8 @@ CREATE TABLE IF NOT EXISTS tipos_prestamos (
     validacion_automatica BOOLEAN DEFAULT false
 );
 
--- 3. Tabla SOLICITUDES
-CREATE TABLE IF NOT EXISTS solicitudes (
+-- 3. Tabla SOLICITUD_PRESTAMOS
+CREATE TABLE IF NOT EXISTS solicitud_prestamo (
     id_solicitud SERIAL PRIMARY KEY,
     monto NUMERIC(10, 2) NOT NULL,
     plazo DATE NOT NULL,
@@ -30,6 +31,6 @@ CREATE TABLE IF NOT EXISTS solicitudes (
     id_estado INT NOT NULL,
     id_tipo_prestamo INT NOT NULL,
     
-    CONSTRAINT fk_solicitud_estados FOREIGN KEY (id_estado) REFERENCES estados(id_estado),
-    CONSTRAINT fk_solicitud_tipos_prestamos FOREIGN KEY (id_tipo_prestamo) REFERENCES tipos_prestamos(id_tipo_prestamo)
+    CONSTRAINT fk_solicitud_estados FOREIGN KEY (id_estado) REFERENCES estado_prestamo(id_estado),
+    CONSTRAINT fk_solicitud_tipos_prestamos FOREIGN KEY (id_tipo_prestamo) REFERENCES tipo_prestamo(id_tipo_prestamo)
 );

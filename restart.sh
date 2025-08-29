@@ -1,0 +1,1 @@
+docker compose down -v ; rm -r postgres_data_auth ; rm -r postgres_data_request ; docker compose up --build -d

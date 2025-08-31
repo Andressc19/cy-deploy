@@ -26,10 +26,12 @@ CREATE TABLE IF NOT EXISTS tipo_prestamo (
 CREATE TABLE IF NOT EXISTS solicitud_prestamo (
     id_solicitud SERIAL PRIMARY KEY,
     monto NUMERIC(10, 2) NOT NULL,
-    plazo DATE NOT NULL,
+    plazo INT NOT NULL,
     email VARCHAR(50) NOT NULL,
     id_estado INT NOT NULL,
     id_tipo_prestamo INT NOT NULL,
+    fecha_aprobacion DATE,
+    fecha_creacion DATE NOT NULL,
     
     CONSTRAINT fk_solicitud_estados FOREIGN KEY (id_estado) REFERENCES estado_prestamo(id_estado),
     CONSTRAINT fk_solicitud_tipos_prestamos FOREIGN KEY (id_tipo_prestamo) REFERENCES tipo_prestamo(id_tipo_prestamo)
